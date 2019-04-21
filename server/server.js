@@ -6,12 +6,11 @@ const morgan = require('morgan')('dev');
 const cookieParser = require('cookie-parser')();
 const mongoose = require("mongoose");
 const dbConfig = require("./config/database");
-// const passport =  require('./config/passport');
 const routes = require('./routes');
-
+const models = require('./models');
+require('./config/passport');
 
 // Environment Variables
-const isDevelopmentMode = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3000;
 const session = {
     // This is the secret used to sign the session ID cookie
@@ -29,11 +28,18 @@ const corsOptions = {
     credentials: true,  // !important for Angular cookie sending
 }
 
+// Dev Mode
+var isDevelopmentMode, dotenv;
+if (process.env.NODE_ENV !== 'production') {
+    isDevelopmentMode = true;
+    dotenv = require('dotenv');
+    dotenv.config();
+}
+
 
 // Initialize app and define middleware
 const app = express();
 app.use(routes);
-// app.use(passport);
 app.use( bodyParser.urlencoded({ extended: true }) );   // parse request body content
 app.use( expressSession(session) );
 app.use( express.json() );
@@ -55,8 +61,8 @@ mongoose.set('debug', isDevelopmentMode);
 mongoose.Promise = global.Promise;  // Get Mongoose to use the global promise library
 
 
-// Start server
+// Start Server
 app.listen(port, () => {
-    const startup_msg = `${new Date().toUTCString()} - Dashboard' server-side API listening on port ${port}`;
+    const startup_msg = `${new Date().toUTCString()} - Dashboard's server-side API listening on port ${port}`;
     console.log(startup_msg);
 });

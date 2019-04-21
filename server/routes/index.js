@@ -6,5 +6,4 @@ router.use('/api', require('./api'));
 // Other Routes
 
 
-
 module.exports = router;
