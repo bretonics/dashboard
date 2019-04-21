@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Mongoose Schema References
 const FiveDayForecastSchema = new Schema({
     dateObtained: Date,
-    response: String,
+    response: JSON,
 });
 
 // Compile Schemas into Models

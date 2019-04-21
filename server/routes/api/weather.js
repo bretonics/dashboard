@@ -1,6 +1,7 @@
 // Weather API Router
 const router = require('express').Router();
 const axios = require('axios');
+const Weather = require('../../models/Weather');
 
 // AccuWeather API Routes
 
@@ -17,7 +18,10 @@ router.get('/', (req, res) => {
 
     instance.get('',)
         .then( (response) => {
-            res.json(response.data);
+            let data = response.data;
+            let entry = { 'dateObtained': new Date(), 'response': data }
+            const entryDB = new Weather(entry);
+            return entryDB.save().then( () => res.json(entryDB) );
         })
         .catch( (error) => {
             console.log("ERROR:", error);
