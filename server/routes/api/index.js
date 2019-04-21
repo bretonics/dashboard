@@ -2,6 +2,7 @@
 const router = require('express').Router();
 
 // Require Routes
+const githubRoute = require('./github');
 const weatherRoute = require('./weather');
 const userRoute = require('./user');
 
@@ -9,6 +10,7 @@ const userRoute = require('./user');
 router.get('/', (req, res) => { res.status(401).send("Not allowed"); });
 
 // Use Specified Routes
+router.use('/github', githubRoute);
 router.use('/weather', weatherRoute);
 router.use('/user', userRoute);
 

@@ -17,7 +17,8 @@ router.get('/', (req, res) => {
     });
 
     instance.get('',)
-        .then( (response) => {
+    .then( (response) => {
+            console.log("Fetched AccuWeather data.");
             let data = response.data;
             let entry = { 'dateObtained': new Date(), 'response': data }
             const entryDB = new Weather(entry);
