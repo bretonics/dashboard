@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const dbConfig = require("./config/database");
 const routes = require('./routes');
 const models = require('./models');
-require('./config/passport');
+// require('./config/passport');
 
 // Environment Variables
 const port = process.env.PORT || 3000;
@@ -39,13 +39,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Initialize app and define middleware
 const app = express();
-app.use(routes);
-app.use( bodyParser.urlencoded({ extended: true }) );   // parse request body content
+app.use( cors(corsOptions) );  // needs to be before using routes
 app.use( expressSession(session) );
+app.use( bodyParser.urlencoded({ extended: true }) );   // parse request body content
 app.use( express.json() );
-app.use( cors(corsOptions) );
-app.use(morgan);
 app.use(cookieParser);
+app.use(morgan);
+app.use(routes);
 
 
 // Setup/Config Database

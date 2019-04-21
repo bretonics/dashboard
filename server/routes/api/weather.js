@@ -20,9 +20,13 @@ router.get('/', (req, res) => {
     .then( (response) => {
             console.log("Fetched AccuWeather data.");
             let data = response.data;
+
+            // Save to DB
             let entry = { 'dateObtained': new Date(), 'response': data }
             const entryDB = new Weather(entry);
-            return entryDB.save().then( () => res.json(entryDB) );
+            entryDB.save();
+
+            return res.json(entryDB);
         })
         .catch( (error) => {
             console.log("ERROR:", error);

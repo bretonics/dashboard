@@ -17,10 +17,15 @@ router.get('/', (req, res) => {
     instance.get('/users/bretonics')
         .then((response) => {
             console.log("Fetched GiHub API.");
-            let data = response.data;
-            let entry = { 'user': 'bretonics', 'response': data }
+            let profile = response.data;
+
+            // Save to DB
+            let entry = { 'user': 'bretonics', 'response': profile }
             const entryDB = new GitHub(entry);
-            return entryDB.save().then(() => res.json(entryDB));
+            entryDB.save();
+
+            // Return Profile JSON Object
+            return res.json(profile);
         })
         .catch((error) => {
             console.log("ERROR:", error);
