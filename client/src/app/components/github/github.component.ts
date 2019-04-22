@@ -12,10 +12,12 @@ export class GithubComponent implements OnInit {
 
   constructor(private server: ServerService) { }
 
+  //--------------------------------------------------------------------------------
+  // GitHub APIs
+
   getProfile() {
     this.server.github().subscribe( (result) => {
       this.profile = result;
-      console.log("GOT profile", this.profile);
     });
   }
 

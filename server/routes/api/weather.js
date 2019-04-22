@@ -9,7 +9,7 @@ const Weather = require('../../models/Weather');
 router.get('/', (req, res) => {
     const apiKey = process.env.ACWEATHER_API_KEY;
     var instance = axios.create({
-        baseURL: 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/348735',
+        baseURL: 'https://dataservice.accuweather.com/forecasts/v1/daily/5day/348735',
         timeout: 1000,
         params: {
             apikey: apiKey

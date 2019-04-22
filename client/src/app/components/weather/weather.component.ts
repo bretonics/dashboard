@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from "../../services/server.service";
 
 @Component({
   selector: 'app-weather',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherComponent implements OnInit {
 
-  constructor() { }
+  weather: any;
+  fiveday: any;
+  daily: any;
+
+  constructor(private server: ServerService) { }
+
+  //--------------------------------------------------------------------------------
+  // AccuWeather APIs
+
+  // Get 5 Day Forecast for Boston
+  getForecast() {
+    this.server.getForecast().subscribe(result => { 
+      let data = result;
+      this.fiveday = data.response;
+      this.daily = this.fiveday.DailyForecasts;
+      console.log(this.fiveday);
+    });
+  }
+
 
   ngOnInit() {
+    this.getForecast();
   }
 
 }

@@ -19,16 +19,28 @@ export class ServerService {
 
   constructor(private http: HttpClient) { }
 
-
+  //--------------------------------------------------------------------------------
+  // GitHub APIs
+  
+  // Get GitHub Profile
   github(): Observable<any> {
     let url = `${this.url}github`;
     return this.http.get(url, this.httpOptions);
   }
 
+  // Get Repos
   getRepos(url: string): Observable<any> {
     console.log("Getting repos");
     return this.http.jsonp(url, 'callback');
-
   }
 
+  //--------------------------------------------------------------------------------
+  // Weather APIs
+
+  // 5 Day Forecast - Boston
+  getForecast(): Observable<any> {
+    let url = `${this.url}weather`;
+    return this.http.get(url, this.httpOptions);
+  }
+  
 }
