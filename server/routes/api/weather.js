@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
         baseURL: 'https://dataservice.accuweather.com/forecasts/v1/daily/5day/348735',
         timeout: 1000,
         params: {
-            apikey: apiKey
+            apikey: apiKey,
         },
     });
 
     instance.get('',)
-    .then( (response) => {
+        .then( (response) => {
             console.log("Fetched AccuWeather data.");
             let data = response.data;
 

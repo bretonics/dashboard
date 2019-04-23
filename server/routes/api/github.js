@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
     instance.get('/users/bretonics')
         .then((response) => {
-            console.log("Fetched GiHub API.");
+            console.log("Fetched GitHub API.");
             let profile = response.data;
 
             // Save to DB
