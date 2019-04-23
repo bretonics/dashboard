@@ -6,8 +6,8 @@ const MapQuest = require('../../models/MapQuest');
 // AccuMapQuest API Routes '/api/mapquest'
 
 // API Directions Route
-router.get('/:start-:dest', (req, res) => {
-    const { start, dest } = req.params;
+router.get('/:from-:to', (req, res) => {
+    const { from, to } = req.params;
 
     const apiKey = process.env.MAPQUEST_API_KEY;
     var instance = axios.create({
@@ -15,19 +15,19 @@ router.get('/:start-:dest', (req, res) => {
         timeout: 1000,
         params: { 
             'key': apiKey,
-            'from': start,
-            'to': dest,
+            'from': from,
+            'to': to,
          }
     });
 
     instance.get('')
         .then((response) => {
-            console.log(response.data);
             console.log("Fetched MapQuest API.");
             let data = response.data;
             let route = data.route;
+
             // Save to DB
-            let entry = { 'route': route, 'start': start, 'to': dest, }
+            let entry = { 'route': route, 'from': from, 'to': to, }
             const entryDB = new MapQuest(entry);
             entryDB.save();
 
