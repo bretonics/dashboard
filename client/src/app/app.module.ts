@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { GithubComponent } from './components/github/github.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { DirectionsComponent } from './components/directions/directions.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DirectionsComponent } from './components/directions/directions.componen
     NavbarComponent,
     GithubComponent,
     WeatherComponent,
-    DirectionsComponent
+    DirectionsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

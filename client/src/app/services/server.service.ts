@@ -50,4 +50,16 @@ export class ServerService {
     let url = `${this.url}mapquest/${start}-${dest}`;
     return this.http.get(url, this.httpOptions);
   }
+  
+  
+  //--------------------------------------------------------------------------------
+  // News APIs
+  
+  getNews(): Observable<any> {
+    let url = `${this.url}news`;
+    return this.http.get(url, this.httpOptions);
+  }
+
+
+
 }
