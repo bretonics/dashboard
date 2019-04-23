@@ -15,12 +15,11 @@ export class ServerService {
     withCredentials: true,
   }
 
-  profile: any;
-
   constructor(private http: HttpClient) { }
-
+  
   //--------------------------------------------------------------------------------
   // GitHub APIs
+  profile: any;
   
   // Get GitHub Profile
   github(): Observable<any> {
@@ -29,10 +28,10 @@ export class ServerService {
   }
 
   // Get Repos
-  getRepos(url: string): Observable<any> {
-    console.log("Getting repos");
-    return this.http.jsonp(url, 'callback');
-  }
+  // getRepos(url: string): Observable<any> {
+  //   console.log("Getting repos");
+  //   return this.http.jsonp(url, 'callback');
+  // }
 
   //--------------------------------------------------------------------------------
   // Weather APIs
@@ -42,5 +41,13 @@ export class ServerService {
     let url = `${this.url}weather`;
     return this.http.get(url, this.httpOptions);
   }
-  
+
+  //--------------------------------------------------------------------------------
+  // Directions APIs
+
+  // MapQuest
+  getRoute(start: string, dest: string): Observable<any> {
+    let url = `${this.url}mapquest/${start}-${dest}`;
+    return this.http.get(url, this.httpOptions);
+  }
 }
