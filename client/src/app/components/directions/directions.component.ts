@@ -19,6 +19,9 @@ export class DirectionsComponent implements OnInit {  // Class with RxJS impleme
 
   constructor(private server: ServerService) { }
 
+  //--------------------------------------------------------------------------------
+  // MapQuest APIs
+  
   // Push subject into observable stream
   getDirections(start: string, destination: string): void {
     this.directions.next([start, destination]);
